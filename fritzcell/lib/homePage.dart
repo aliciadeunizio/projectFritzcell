@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'estatisticasPage.dart';
-import 'diagnosticPage.dart';
+import 'components/button_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
         child: ListView(
           children: [
             const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
+              decoration: BoxDecoration(color: Color.fromARGB(255, 5, 58, 101)),
               child: Center(
                 child: Text(
                   "Menu de Navegação",
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.lightBlueAccent, Colors.white],
+                colors: [Color.fromARGB(255, 5, 58, 101), Colors.white],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -58,10 +58,8 @@ class HomePage extends StatelessWidget {
                 children: [
                   const CircleAvatar(
                     radius: 50,
-                    backgroundColor: Colors.blue,
-                    child: Text(
-                      "LOGO",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    backgroundImage: AssetImage(
+                      'assets/images/LogoSimples.jpeg',
                     ),
                   ),
                   const SizedBox(height: 30),
@@ -72,10 +70,10 @@ class HomePage extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       child: Column(
                         children: [
-                          _menuButton(context, "Botão de energia"),
-                          _menuButton(context, "Tela"),
-                          _menuButton(context, "Bateria"),
-                          _menuButton(context, "Conector"),
+                          MenuButton(titulo: "Botão de energia"),
+                          MenuButton(titulo: "Tela"),
+                          MenuButton(titulo: "Bateria"),
+                          MenuButton(titulo: "Conector"),
                           const SizedBox(height: 20),
                           ElevatedButton.icon(
                             onPressed: () {
@@ -98,27 +96,6 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _menuButton(BuildContext context, String titulo) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          minimumSize: const Size(double.infinity, 50),
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          side: const BorderSide(color: Colors.blue),
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => DiagnosticoPage(tipo: titulo)),
-          );
-        },
-        child: Text(titulo),
       ),
     );
   }

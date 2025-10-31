@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "352135072721",
+    "project_id": "diagnosticos-fritzcell",
+    "storage_bucket": "diagnosticos-fritzcell.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352135072721:android:ca99bb0e8d4a6361202ef0",
+        "android_client_info": {
+          "package_name": "com.example.fritzcell"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXAvx0vX3abWyUIhWhAjhWfD_kBoa9yqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,7 +12,7 @@ class DiagnosticoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Diagnóstico Técnico',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primaryColor: const Color.fromARGB(255, 5, 58, 101)),
       home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
