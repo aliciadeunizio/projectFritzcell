@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/firestore_service.dart';
 
 class DiagnosticoPage extends StatefulWidget {
   final String tipo;
@@ -12,11 +13,23 @@ class _DiagnosticoPageState extends State<DiagnosticoPage> {
   int etapa = 1;
   final int totalEtapas = 3;
   bool finalizado = false;
+  bool resultadoPositivo = false;
 
-  void _responder(String resposta) {
+  final _firestore = FirestoreService();
+
+  void _responder(String resposta) async {
+    bool respostaSim = resposta == "Sim";
+
     if (etapa < totalEtapas) {
       setState(() => etapa++);
     } else {
+      resultadoPositivo = respostaSim;
+
+      await _firestore.registrarDiagnostico(
+        tipo: widget.tipo,
+        concluido: resultadoPositivo,
+      );
+
       setState(() => finalizado = true);
     }
   }
@@ -32,15 +45,18 @@ class _DiagnosticoPageState extends State<DiagnosticoPage> {
               ? Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(
-                      Icons.check_circle,
-                      color: Colors.green,
+                    Icon(
+                      resultadoPositivo ? Icons.check_circle : Icons.error,
+                      color: resultadoPositivo ? Colors.green : Colors.red,
                       size: 80,
                     ),
                     const SizedBox(height: 20),
-                    const Text(
-                      "Diagnóstico concluído!",
-                      style: TextStyle(
+                    Text(
+                      resultadoPositivo
+                          ? "Diagnóstico concluído com SUCESSO!"
+                          : "Diagnóstico concluído com FALHA detectada!",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),

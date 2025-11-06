@@ -5,11 +5,11 @@ class FirestoreService {
 
   Future<void> registrarDiagnostico({
     required String tipo,
-    required bool resultadoPositivo,
+    required bool concluido,
   }) async {
     await _db.collection('diagnosticos').add({
       'tipo': tipo,
-      'resultado': resultadoPositivo ? 'Positivo' : 'Negativo',
+      'concluido': concluido, // campo booleano
       'data': DateTime.now().toIso8601String(),
     });
   }
