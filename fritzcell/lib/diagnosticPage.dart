@@ -53,8 +53,8 @@ class _DiagnosticoPageState extends State<DiagnosticoPage> {
                     const SizedBox(height: 20),
                     Text(
                       resultadoPositivo
-                          ? "Diagnóstico concluído com SUCESSO!"
-                          : "Diagnóstico concluído com FALHA detectada!",
+                          ? "Diagnóstico encontrado, substitua a peça!"
+                          : "Diagnóstico não encontrado, inicie outro diagnóstico",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20,
@@ -62,6 +62,21 @@ class _DiagnosticoPageState extends State<DiagnosticoPage> {
                       ),
                     ),
                     const SizedBox(height: 20),
+
+                    if (!resultadoPositivo)
+                      const Padding(
+                        padding: EdgeInsets.all(12.0),
+                        child: Text(
+                          "Ações recomendadas:\n"
+                          "- Testar o componente em outro aparelho;\n"
+                          "- Realizar limpeza no conector;\n"
+                          "- Verificar oxidação;\n"
+                          "- Considerar substituição da peça.",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
